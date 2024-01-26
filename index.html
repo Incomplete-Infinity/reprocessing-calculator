@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-us" data-bs-core="modern" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reprocessing Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Halfmoon/2.0.1/css/halfmoon.min.css"
+      integrity="sha512-g9GEUJMl/pfimBhAYQmiCb+6Drr+sp8tPllURqR+dcbiHfm+0lAX2fWhZsMHxcQY3/48mUHJs4onDsptohS1Kw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/css/cores/halfmoon.modern.css" rel="stylesheet"
+    integrity="sha256-DD6elX+jPmbFYPsGvzodUv2+9FHkxHlVtQi0/RJVULs=" crossorigin="anonymous">
+  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/css/cores/halfmoon.modern.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body
+    class="container-fluid bg-body d-flex w-100 h-100 flex-column text-center text-body p-0"
+  >
+    <header class="jumbotron p-0 bg-gradient">
+      <h1 class="title display-1">Reprocessing Calculator</h1>
+    </header>
+    <main class="container bg-body-secondary border rounded p-3">
+      <article class="bg-primary p-1 rounded-1">
+        <section class="bg-body-tertiary p-1 rounded-5">
+          <form class="form bg-body-tertiary bg-gradient rounded-0 p-0">
+            <label for="veldspar" class="form-label d-inline">Veldspar:</label>
+            <input
+              type="number"
+              class="form-control d-inline p-1"
+              id="veldspar"
+              placeholder="m^3"
+            />
+          </form>
+
+          <figure class="container">
+            <input
+              type="button"
+              class="btn btn-primary bg-gradient position-relative specific-h-50 specific-w-50"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#table-panel"
+              value="Table"
+            />
+
+            <input
+              type="button"
+              class="btn btn-primary bg-gradient position-relative specific-h-50 specific-w-50"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#input-panel"
+              value="Input"
+            />
+          </figure>
+        </section>
+      </article>
+      <!-- Input Form -->
+      <aside
+        id="input-panel"
+        data-bs-scroll="true"
+        data-bs-backdrop="false"
+        tabindex="-1"
+        aria-labelledby="input-panel"
+        class="offcanvas offcanvas-end card bg-primary rounded-0 rounded-top-5 border-start shadow pt-4 pb-0 ps-1 pe-0"
+        style="border-top-right-radius: 0 !important"
+      >
+        <header
+          class="offcanvas-header bg-body-secondary rounded-top-5"
+          style="border-top-right-radius: 0 !important"
+        >
+          <h5 class="offcanvas-title" id="panel-1-title">Input</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </header>
+        <article
+          class="offcanvas-body bg-body-secondary bg-gradient rounded-0"
+          style="border-top-left-radius: 0 !important"
+        >
+          <form id="form" class="form bg-body-tertiary bg-gradient rounded p-1">
+            <fieldset class="card border-0 bg-gradient p-1">
+              <legend class="p-2 rounded-pill">
+                <header class="bg-body">
+                  <h5 class="text-start">Facility</h5>
+                </header>
+              </legend>
+
+              <figure class="form-group bg-primary-subtle rounded p-1 my-2">
+                <label for="structure-dropdown" class="form-label"
+                  >Structure Type:
+                </label>
+
+                <select id="structure-dropdown" class="form-select">
+                  <option value="0">Other</option>
+                  <option value="0.02">Athanor</option>
+                  <option value="0.04">Tatara</option>
+                </select>
+              </figure>
+              <figure class="form-group bg-primary-subtle rounded p-1 my-2">
+                <label for="rig-dropdown" class="form-label">Rig:</label>
+                <select id="rig-dropdown" class="form-select">
+                  <option selected value="0">None</option>
+                  <option value="1">TI</option>
+                  <option value="3">TII</option>
+                </select>
+              </figure>
+              <figure class="form-group bg-primary-subtle rounded p-1 my-2">
+                <label for="security-dropdown" class="form-label"
+                  >Security Status:</label
+                >
+                <select id="security-dropdown" class="form-select m-0">
+                  <option value="0">High</option>
+                  <option value="0.06">Low</option>
+                  <option value="0.12">Null/WH</option>
+                </select>
+              </figure>
+            </fieldset>
+            <fieldset class="card border-0 bg-gradient p-1">
+              <legend class="p-2">
+                <h5 class="text-start">Character</h5>
+              </legend>
+              <figure
+                class="form-group input-group bg-primary-subtle rounded p-1 my-2"
+              >
+                <figcaption class="input-group-text">
+                  <label for="implant-dropdown" class="form-label"
+                    >Implant:</label
+                  >
+                  <p class="input-group-text">Zainou 'Beancounter'</p>
+                  <select
+                    id="implant-dropdown"
+                    class="form-select form-control"
+                  >
+                    <option selected value="0">None</option>
+                    <option value="0.01">RX-801</option>
+                    <option value="0.02">RX-802</option>
+                    <option value="0.04">RX-804</option>
+                  </select>
+                </figcaption>
+              </figure>
+              <figure class="form-group">
+                <label for="reprocessing-skill-dropdown" class="form-label"
+                  >Reprocessing Skill:</label
+                >
+                <figcaption class="input-group">
+                  <small class="input-group-text">Level</small>
+                  <select id="reprocessing-skill-dropdown" class="form-select">
+                    <option selected value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </figcaption>
+              </figure>
+            </fieldset>
+          </form>
+        </article>
+      </aside>
+      <!-- Yield Table -->
+      <aside
+        id="table-panel"
+        data-bs-scroll="true"
+        data-bs-backdrop="false"
+        tabindex="-1"
+        aria-labelledby="panel-2-title"
+        class="offcanvas offcanvas-bottom card bg-primary rounded-0 rounded-top-5 border-top shadow h-50 pt-4 pb-0 ps-1 pe-0 ms-2"
+        style="border-top-right-radius: 0 !important"
+      >
+        <header
+          class="offcanvas-header bg-body-secondary rounded-top-5"
+          style="border-top-right-radius: 0 !important"
+        >
+          <h5 class="offcanvas-title pb-0 mb-0" id="panel-2-title">
+            Reprocessing Projector
+          </h5>
+          <button
+            type="button"
+            class="btn-close mb-0 pb-0"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </header>
+        <article class="offcanvas-body bg-body-secondary shadow">
+          <table
+            id="yield-table"
+            class="float-end table table-hover table-bordered"
+          >
+            <caption>
+              Description of the table
+            </caption>
+            <tr>
+              <th
+                rowspan="2"
+                class="bg-body-tertiary bg-gradient text-bottom justify-content-bottom col-1"
+                scope="rowgroup"
+              >
+                <strong>Ice/Ore Spec. Skill Level</strong>
+              </th>
+              <th
+                colspan="6"
+                class="bg-body-tertiary bg-gradient"
+                scope="colgroup"
+              >
+                Reprocessing Efficiency Skill Level
+              </th>
+            </tr>
+            <tr>
+              <th class="bg-body-tertiary" scope="col">0</th>
+              <th class="bg-body-tertiary" scope="col">1</th>
+              <th class="bg-body-tertiary" scope="col">2</th>
+              <th class="bg-body-tertiary" scope="col">3</th>
+              <th class="bg-body-tertiary" scope="col">4</th>
+              <th class="bg-body-tertiary" scope="col">5</th>
+            </tr>
+            <tbody class="bg-warning bg-opacity-75">
+              <tr>
+                <td class="bg-body-tertiary"><strong>0</strong></td>
+                <td class="bg-danger bg-opacity-100 text-black"></td>
+                <td class="bg-danger bg-opacity-75 text-black"></td>
+                <td class="bg-danger bg-opacity-50 text-black"></td>
+                <td class="bg-danger bg-opacity-25 text-black"></td>
+                <td class="bg-danger bg-opacity-10 text-black"></td>
+                <td class="bg-transparent text-black"></td>
+              </tr>
+              <tr>
+                <td class="bg-body-tertiary"><strong>1</strong></td>
+                <td class="bg-danger bg-opacity-75 text-black"></td>
+                <td class="bg-danger bg-opacity-50 text-black"></td>
+                <td class="bg-danger bg-opacity-25 text-black"></td>
+                <td class="bg-danger bg-opacity-10 text-black"></td>
+                <td class="bg-transparent text-black"></td>
+                <td class="bg-success bg-opacity-10 text-black"></td>
+              </tr>
+              <tr>
+                <td class="bg-body-tertiary"><strong>2</strong></td>
+                <td class="bg-danger bg-opacity-50 text-black"></td>
+                <td class="bg-danger bg-opacity-25 text-black"></td>
+                <td class="bg-danger bg-opacity-10 text-black"></td>
+                <td class="bg-transparent text-black"></td>
+                <td class="bg-success bg-opacity-10 text-black"></td>
+                <td class="bg-success bg-opacity-25 text-black"></td>
+              </tr>
+              <tr>
+                <td class="bg-body-tertiary"><strong>3</strong></td>
+                <td class="bg-danger bg-opacity-25 text-black"></td>
+                <td class="bg-danger bg-opacity-10 text-black"></td>
+                <td class="bg-transparent text-black"></td>
+                <td class="bg-success bg-opacity-10 text-black"></td>
+                <td class="bg-success bg-opacity-25 text-black"></td>
+                <td class="bg-success bg-opacity-50 text-black"></td>
+              </tr>
+              <tr>
+                <td class="bg-body-tertiary"><strong>4</strong></td>
+                <td class="bg-danger bg-opacity-10 text-black"></td>
+                <td class="bg-transparent text-black"></td>
+                <td class="bg-success bg-opacity-10 text-black"></td>
+                <td class="bg-success bg-opacity-25 text-black"></td>
+                <td class="bg-success bg-opacity-50 text-black"></td>
+                <td class="bg-success bg-opacity-75 text-black"></td>
+              </tr>
+              <tr>
+                <td class="bg-body-tertiary"><strong>5</strong></td>
+                <td class="bg-transparent text-black"></td>
+                <td class="bg-success bg-opacity-10 text-black"></td>
+                <td class="bg-success bg-opacity-25 text-black"></td>
+                <td class="bg-success bg-opacity-50 text-black"></td>
+                <td class="bg-success bg-opacity-75 text-black"></td>
+                <td class="bg-success bg-opacity-100 text-black"></td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </aside>
+    </main>
+    <footer class="jumbotron p-2 bg-gradient mt-auto">
+      <p class="text-sm-center">©️ 2023 Phobiacide</p>
+    </footer>
+    <div id="scripts">
+      <script>
+        function createArray(size) {
+          try {
+            // Check if the size is a valid positive integer
+            if (!Number.isInteger(size) || size <= 0) {
+              throw new Error(
+                "Invalid array size. Please provide a positive integer."
+              );
+            }
+            // Create an array of a specified size, filled with placeholder values
+            const newArray = new Array(size).fill(null);
+
+            return newArray;
+          } catch (err) {
+            console.error(err);
+
+            // Return null to indicate an error
+            return null;
+          }
+        }
+        function populateTable() {
+          const getValue = (id) => document.getElementById(id).value;
+
+          const rig = +getValue("rig-dropdown");
+          const implant = +getValue("implant-dropdown");
+          const security = +getValue("security-dropdown");
+          const structure = +getValue("structure-dropdown");
+          const reprocessingSkill = +getValue("reprocessing-skill-dropdown");
+
+          // Get a reference to the existing table
+          const table = document.getElementById("yield-table");
+
+          const calculateTableValue = (x, y) =>
+            (50 + rig) *
+            (1 + 0.02 * x) *
+            (1 + 0.02 * y) *
+            (1 + implant) *
+            (1 + 0.03 * reprocessingSkill) *
+            (1 + structure) *
+            (1 + security);
+
+          for (let i = 2; i < table.rows.length; i++) {
+            for (let j = 1; j < table.rows[i].cells.length; j++) {
+              const result = calculateTableValue(j - 1, i - 1);
+              table.rows[i].cells[j].innerHTML = result.toFixed(2) + "%";
+            }
+          }
+        }
+        // Attach the populateTable function to the form change event
+        document.getElementById("form").addEventListener("change", () => {
+          populateTable();
+        });
+        document.addEventListener("DOMContentLoaded", () => {
+          populateTable();
+        });
+      </script>
+      <!-- Poppers.js -->
+      <script
+        fetchpriority="low"
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"
+      ></script>
+      <!-- Bootstrap Bundle -->
+      <script
+        fetchpriority="auto"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"
+      ></script>
+    </div>
+  </body>
+</html>
